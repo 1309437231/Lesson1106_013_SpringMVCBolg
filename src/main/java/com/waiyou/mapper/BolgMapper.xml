@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.waiyou.mapper.BolgMapper">
+
+    <resultMap id="bolgMap" type="com.waiyou.bean.Bolg">
+
+        <id column="id" property="bid"/>
+        <result column="title" property="title"/>
+        <result column="des" property="des"/>
+        <result column="content" property="content"/>
+        <result column="userId" property="uid"/>
+    </resultMap>
+    
+    <select id="findBolgByUid" resultMap="bolgMap">
+        SELECT * FROM b_blog WHERE userId = #{uid}
+    </select>
+    
+    <delete id="deleteByBid">
+        DELETE FROM b_blog WHERE id = #{bid}
+    </delete>
+
+    <select id="getContentByBid" resultMap="bolgMap">
+        SELECT * FROM b_blog WHERE id = #{bid}
+    </select>
+
+    <insert id="addNewBolg">
+        INSERT INTO b_blog(title,des,content,userId) VALUES (#{title},#{des},#{content},#{uid})
+    </insert>
+
+</mapper>
